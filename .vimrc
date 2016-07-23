@@ -1,7 +1,7 @@
 "dein Scripts-----------------------------
 
 if &compatible
-    set nocompatible
+  set nocompatible
 endif
    
 "Required:
@@ -15,6 +15,28 @@ call dein#begin(expand('~/.vim/dein'))
 call dein#add('Shougo/dein.vim')
 call dein#add('Shougo/unite.vim')
 call dein#add('scrooloose/nerdtree')
+call dein#add('tomasr/molokai')
+call dein#add('scrooloose/syntastic')
+call dein#add('itchyny/lightline.vim')
+call dein#add('Shougo/neosnippet.vim')
+"Plugin key-mappings.
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_or_target)
+
+"SuperTab like snippets behavior.
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "<Plug>(neosnippet_expand_or_jump)"
+\: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "<Plug>(neosnippet_expand_or_jump)"
+\: "\<TAB>"
+"For snippet complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
+
+call dein#add('Shougo/neosnippet-snippets')
 
 " Add or remove your plugins here:
 call dein#add('Shougo/.vim')
@@ -29,9 +51,9 @@ call dein#end()
 filetype plugin indent on
 
 " If you want to install not installed plugins on startup.
-"if dein#check_install()
-"    call dein#install()
-"endif
+if dein#check_install()
+  call dein#install()
+endif
 
 "End dein Scripts-------------------------
 
@@ -40,39 +62,32 @@ set fileencoding=utf-8
 set fileencodings=utf-8
 scriptencoding utf-8
 
-" 検索時に大文字小文字を区別
-set noignorecase
-" 
-"set smartcase
-" 検索文字列のハイライト
+set ignorecase
+set smartcase
 set hlsearch
-" インクリメンタルサーチ
 set incsearch
-" 
-set nowrapscan
 
-set tabstop=4
+set tabstop=2
 set expandtab
 set autoindent
-"set smartindent
-set shiftwidth=4
-"set showmatch
-"set matchtime=1
-
-syntax on
-set background=dark
-highlight LineNr ctermfg=darkyellow
-set mouse=a
-nnoremap j gj
-nnoremap k gk
-set number
-set wrap
-set showcmd
+set smartindent
+set shiftwidth=2
+set backspace=indent,eol,start
+set wrapscan
+set showmatch
 set wildmenu
-set laststatus=2
-set cmdheight=2
-set nolist
+set formatoptions+=mM
 
+set number
+set ruler
+set nolist
+set wrap
+set laststatus=2
+set cmdheight=1
+set showcmd
+set title
+syntax on
+colorscheme molokai
 
 set nobackup
 set nowritebackup
@@ -80,11 +95,8 @@ set noswapfile
 set noundofile
 set hidden
 
-inoremap ( ()<Left>
-inoremap { {}<Left>
-inoremap [ []<Left>
-inoremap < <><Left>
-inoremap " ""<Left>
-inoremap ' ''<Left>
+set mouse=a
+
+nnoremap j gj
+nnoremap k gk
 inoremap {<CR> {}<Left><CR><ESC><S-o><Tab>
-inoremap (<CR> ()<Left><CR><ESC><S-o><Tab>
