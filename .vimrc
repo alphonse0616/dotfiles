@@ -1,18 +1,12 @@
-"dein Scripts-----------------------------
-
 if &compatible
   set nocompatible
 endif
-   
-"Required:
 set runtimepath^=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
-" Required:
 call dein#begin(expand('~/.vim/dein'))
 
-" Let dein manage dein
-" Required:
 call dein#add('Shougo/dein.vim')
+call dein#add('Shougo/.vim')
 call dein#add('Shougo/unite.vim')
 call dein#add('scrooloose/nerdtree')
 call dein#add('tomasr/molokai')
@@ -37,25 +31,19 @@ if has('conceal')
 endif
 
 call dein#add('Shougo/neosnippet-snippets')
+call dein#add('Shougo/neocomplete.vim')
+let g:neocomplete#enable_at_startup = 1
 
-" Add or remove your plugins here:
-call dein#add('Shougo/.vim')
-
-" You can specify revision/branch/tag.
 call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
-" Required:
 call dein#end()
 
-" Required:
 filetype plugin indent on
 
 " If you want to install not installed plugins on startup.
 if dein#check_install()
   call dein#install()
 endif
-
-"End dein Scripts-------------------------
 
 set encoding=utf-8
 set fileencoding=utf-8
@@ -72,6 +60,7 @@ set expandtab
 set autoindent
 set smartindent
 set shiftwidth=2
+set softtabstop=2
 set backspace=indent,eol,start
 set wrapscan
 set showmatch
@@ -86,6 +75,7 @@ set laststatus=2
 set cmdheight=1
 set showcmd
 set title
+
 syntax on
 colorscheme molokai
 
@@ -97,6 +87,7 @@ set hidden
 
 set mouse=a
 
+let g:loaded_matchparen=1
 nnoremap j gj
 nnoremap k gk
 inoremap {<CR> {}<Left><CR><ESC><S-o><Tab>
