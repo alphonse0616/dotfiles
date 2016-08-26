@@ -65,6 +65,7 @@ set wrapscan
 set showmatch
 set wildmenu
 set formatoptions+=mM
+set history=1000
 
 set number
 set ruler
@@ -89,4 +90,6 @@ set mouse=a
 let g:loaded_matchparen=1
 nnoremap j gj
 nnoremap k gk
-inoremap {<CR> {}<Left><CR><ESC><S-o><Tab>
+inoremap {<CR> {}<Left><CR><ESC><S-o>
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
